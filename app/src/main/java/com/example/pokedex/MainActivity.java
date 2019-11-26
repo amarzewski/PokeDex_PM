@@ -1,5 +1,8 @@
 package com.example.pokedex;
 
+import android.content.Intent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,5 +34,13 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, R.layout.row, pokemonList);
         listView = findViewById(R.id.listview);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, DetailView.class);
+                intent.putExtra("pokemonId", i);
+                startActivity(intent);
+            }
+        });
     }
 }
