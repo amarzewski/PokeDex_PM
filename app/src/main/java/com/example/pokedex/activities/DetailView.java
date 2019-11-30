@@ -1,4 +1,4 @@
-package com.example.pokedex;
+package com.example.pokedex.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,22 +6,26 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pokedex.database.PokemonDAO;
+import com.example.pokedex.other.Pokemon;
+import com.example.pokedex.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DetailView extends AppCompatActivity {
+    private PokemonDAO pokemonDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
 
+        getSupportActionBar().setTitle("pokemon detail");
+
+        pokemonDAO = new PokemonDAO(this);
         TextView pokemonName;
 
-        List<Pokemon> pokemonList = new ArrayList<>();
-        pokemonList.add(new Pokemon("Pikachu"));
-        pokemonList.add(new Pokemon("Squirtle"));
-        pokemonList.add(new Pokemon("Meow"));
 
         int pokemonId = getIntent().getIntExtra("pokemonId", -1);
 
@@ -31,7 +35,9 @@ public class DetailView extends AppCompatActivity {
             toast.show();
         } else {
             pokemonName = findViewById(R.id.pokemonName);
-            pokemonName.setText(pokemonList.get(pokemonId).toString());
+            pokemonName.setText(pokemonDAO.getPokemonById(pokemonId).getName());
         }
     }
+
+
 }

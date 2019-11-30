@@ -1,4 +1,4 @@
-package com.example.pokedex;
+package com.example.pokedex.activities;
 
 import android.content.Intent;
 import android.view.View;
@@ -8,17 +8,17 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.pokedex.database.PokemonDAO;
+import com.example.pokedex.other.Pokemon;
+import com.example.pokedex.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public List<Pokemon> pokemonList;
-
-    public MainActivity(){
-        pokemonList = new ArrayList<>();
-    }
-
+    private List<Pokemon> pokemonList;
+    private PokemonDAO pokemonDAO;
     private ListView listView;
     private ArrayAdapter<Pokemon> adapter;
 
@@ -27,9 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pokemonList.add(new Pokemon("Pikachu"));
-        pokemonList.add(new Pokemon("Squirtle"));
-        pokemonList.add(new Pokemon("Meow"));
+        pokemonDAO = new PokemonDAO(this);
+        pokemonList = pokemonDAO.getAll();
 
         adapter = new ArrayAdapter<>(this, R.layout.row, pokemonList);
         listView = findViewById(R.id.listview);
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this, DetailView.class);
-                intent.putExtra("pokemonId", i);
+                intent.putExtra("pokemonId", pokemonList.get(i).getId());
                 startActivity(intent);
             }
         });
