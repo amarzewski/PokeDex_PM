@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.*?>
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Row"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainRow"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textSize="15dp" >
-</TextView>
+    android:textSize="24sp"
+    tools:text="asdfasd"></TextView>

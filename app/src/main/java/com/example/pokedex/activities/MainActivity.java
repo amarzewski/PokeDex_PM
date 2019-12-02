@@ -12,7 +12,6 @@ import com.example.pokedex.database.PokemonDAO;
 import com.example.pokedex.other.Pokemon;
 import com.example.pokedex.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         pokemonDAO = new PokemonDAO(this);
         pokemonList = pokemonDAO.getAll();
 
-        adapter = new ArrayAdapter<>(this, R.layout.row, pokemonList);
-        listView = findViewById(R.id.listview);
+        adapter = new ArrayAdapter<>(this, R.layout.main_row, pokemonList);
+        listView = findViewById(R.id.pokemonListView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
