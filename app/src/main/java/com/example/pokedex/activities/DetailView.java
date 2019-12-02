@@ -1,11 +1,18 @@
 package com.example.pokedex.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +27,7 @@ import java.util.List;
 
 public class DetailView extends AppCompatActivity {
     private PokemonDAO pokemonDAO;
+    private Pokemon pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +36,19 @@ public class DetailView extends AppCompatActivity {
 
         pokemonDAO = new PokemonDAO(this);
 
-        int pokemonId = getIntent().getIntExtra("pokemonId", -1);
+        Switch caughtSwitch = findViewById(R.id.caughtSwitch);
+
+        final int pokemonId = getIntent().getIntExtra("pokemonId", -1);
+
+        caughtSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String msg = isChecked ? "true" : "false";
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                pokemon.setIsCaught(isChecked);
+                pokemonDAO.setPokemonIsCaughtById(pokemonId, isChecked);
+            }
+        });
+
 
         if (pokemonId < 0) {
             Toast toast = Toast.makeText(getApplicationContext(), "Wystąpił błąd", Toast.LENGTH_SHORT);
@@ -37,11 +57,13 @@ public class DetailView extends AppCompatActivity {
             ArrayAdapter<String> adapter;
             ListView listView;
 
-            Pokemon pokemon = pokemonDAO.getPokemonById(pokemonId);
+            pokemon = pokemonDAO.getPokemonById(pokemonId);
             getSupportActionBar().setTitle(pokemon.getName());
 
             TextView pokemonName = findViewById(R.id.pokemonName);
             pokemonName.setText(pokemonDAO.getPokemonById(pokemonId).getName());
+
+            caughtSwitch.setChecked(pokemon.getIsCaught());
 
             adapter = new ArrayAdapter<>(this, R.layout.detail_row, pokemon.getTypes());
             listView = findViewById(R.id.typesListView);

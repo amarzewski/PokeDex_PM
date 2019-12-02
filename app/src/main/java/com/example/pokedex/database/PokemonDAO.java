@@ -1,5 +1,6 @@
 package com.example.pokedex.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -101,5 +102,11 @@ public class PokemonDAO implements DAO<Pokemon> {
         cursor.close();
 
         return results;
+    }
+
+    public void setPokemonIsCaughtById(Integer pokemonId, boolean isCaught) {
+        ContentValues cv = new ContentValues();
+        cv.put(PokemonTable.Columns.CAUGHT, isCaught);
+        dbHelper.getWritableDatabase().update(PokemonTable.TABLE_NAME, cv, "id = ?", new String[]{pokemonId.toString()});
     }
 }

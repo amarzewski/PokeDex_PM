@@ -14,29 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Pokemon {
-    enum Type {
-        NORMAL,
-        FIGHTING,
-        FLYING,
-        POISON,
-        GROUND,
-        ROCK,
-        BUG,
-        GHOST,
-        STEEL,
-        FIRE,
-        WATER,
-        GRASS,
-        ELECTRIC,
-        PSYCHIC,
-        ICE,
-        DRAGON,
-        DARK,
-        FAIRY,
-        UNKNOWN,
-        SHADOW
-    }
-
     @NonNull
     @Getter
     private Integer id;
@@ -75,10 +52,6 @@ public class Pokemon {
             statsNames.add(stats.get(i).values().toArray(new Integer[0])[0].toString());
         }
         return statsNames;
-    }
-
-    public Pokemon(String name){
-        this.name=name;
     }
 
     @Override
