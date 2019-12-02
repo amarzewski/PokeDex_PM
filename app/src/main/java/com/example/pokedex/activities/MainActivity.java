@@ -17,7 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Pokemon> pokemonList;
-    private PokemonDAO pokemonDAO;
+    protected static PokemonDAO pokemonDAO;
     private ListView listView;
     private ArrayAdapter<Pokemon> adapter;
 

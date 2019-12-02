@@ -1,40 +1,23 @@
 package com.example.pokedex.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ActionMode;
-
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pokedex.database.PokemonDAO;
 import com.example.pokedex.other.Pokemon;
 import com.example.pokedex.R;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class DetailView extends AppCompatActivity {
-    private PokemonDAO pokemonDAO;
+public class DetailView extends MainActivity {
     private Pokemon pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
-
-        pokemonDAO = new PokemonDAO(this);
 
         Switch caughtSwitch = findViewById(R.id.caughtSwitch);
 
@@ -84,6 +67,7 @@ public class DetailView extends AppCompatActivity {
             adapter = new ArrayAdapter<>(this, R.layout.detail_row, pokemon.getStatsValues());
             listView = findViewById(R.id.statsValuesListView);
             listView.setAdapter(adapter);
+
         }
     }
 }
