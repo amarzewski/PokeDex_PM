@@ -5,5 +5,5 @@ import java.util.List;
 public interface DAO<T> {
     List<T> getAll();
     T getPokemonById(Integer pokemonId);
-    void setPokemonIsCaughtById(Integer pokemonId, boolean isCaught);
+    void setPokemonIsCaughtById(Integer pokemonId, Boolean isCaught);
 }

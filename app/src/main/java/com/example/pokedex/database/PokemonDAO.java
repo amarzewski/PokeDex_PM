@@ -104,9 +104,9 @@ public class PokemonDAO implements DAO<Pokemon> {
         return results;
     }
 
-    public void setPokemonIsCaughtById(Integer pokemonId, boolean isCaught) {
+    public void setPokemonIsCaughtById(Integer pokemonId, Boolean isCaught) {
         ContentValues cv = new ContentValues();
-        cv.put(PokemonTable.Columns.CAUGHT, isCaught);
-        dbHelper.getWritableDatabase().update(PokemonTable.TABLE_NAME, cv, "id = ?", new String[]{pokemonId.toString()});
+        cv.put(PokemonTable.Columns.CAUGHT, isCaught.toString());
+        dbHelper.getWritableDatabase().update(PokemonTable.TABLE_NAME, cv, " " + PokemonTable.Columns.ID + " = ? ", new String[]{pokemonId.toString()});
     }
 }
