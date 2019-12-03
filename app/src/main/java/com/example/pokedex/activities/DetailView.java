@@ -8,16 +8,23 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pokedex.database.PokemonDAO;
 import com.example.pokedex.other.Pokemon;
 import com.example.pokedex.R;
 
-public class DetailView extends MainActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class DetailView extends AppCompatActivity {
+    private PokemonDAO pokemonDAO;
     private Pokemon pokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view);
+
+        pokemonDAO = new PokemonDAO(this);
 
         Switch caughtSwitch = findViewById(R.id.caughtSwitch);
 
@@ -67,7 +74,6 @@ public class DetailView extends MainActivity {
             adapter = new ArrayAdapter<>(this, R.layout.detail_row, pokemon.getStatsValues());
             listView = findViewById(R.id.statsValuesListView);
             listView.setAdapter(adapter);
-
         }
     }
 }

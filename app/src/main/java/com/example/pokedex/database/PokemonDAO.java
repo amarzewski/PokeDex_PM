@@ -107,6 +107,6 @@ public class PokemonDAO implements DAO<Pokemon> {
     public void setPokemonIsCaughtById(Integer pokemonId, Boolean isCaught) {
         ContentValues cv = new ContentValues();
         cv.put(PokemonTable.Columns.CAUGHT, isCaught.toString());
-        dbHelper.getWritableDatabase().update(PokemonTable.TABLE_NAME, cv, " id = ? ", new String[]{pokemonId.toString()});
+        dbHelper.getWritableDatabase().update(PokemonTable.TABLE_NAME, cv, " " + PokemonTable.Columns.ID + " = ? ", new String[]{pokemonId.toString()});
     }
 }
