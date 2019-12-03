@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PokeDex</string>
+    <string name="abilities_title">abilities</string>
+    <string name="caught">caught</string>
+    <string name="caught_set">is caught</string>
+    <string name="caught_unset">is not caught</string>
+    <string name="dark_mode_title">Dark mode</string>
+    <string name="default_error">An error occured</string>
+    <string name="general_header">General</string>
+    <string name="language_title">Language</string>
+    <string name="moves_title">moves</string>
+    <string name="other_header">Other</string>
+    <string name="reset_caught_title">Reset all caught pokemon</string>
+    <string name="search">search</string>
+    <string name="stats_title">stats</string>
+    <string name="title_activity_settings">Settings</string>
+</resources>

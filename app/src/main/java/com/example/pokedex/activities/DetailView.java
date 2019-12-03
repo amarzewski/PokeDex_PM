@@ -14,9 +14,6 @@ import com.example.pokedex.database.PokemonDAO;
 import com.example.pokedex.other.Pokemon;
 import com.example.pokedex.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DetailView extends AppCompatActivity {
     private PokemonDAO pokemonDAO;
     private Pokemon pokemon;
@@ -32,18 +29,8 @@ public class DetailView extends AppCompatActivity {
 
         final int pokemonId = getIntent().getIntExtra("pokemonId", -1);
 
-        caughtSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String msg = isChecked ? "true" : "false";
-                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                pokemon.setIsCaught(isChecked);
-                pokemonDAO.setPokemonIsCaughtById(pokemonId, isChecked);
-            }
-        });
-
-
         if (pokemonId < 0) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Wystąpił błąd", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.default_error), Toast.LENGTH_SHORT);
             toast.show();
         } else {
             ArrayAdapter<String> adapter;
@@ -76,6 +63,15 @@ public class DetailView extends AppCompatActivity {
             adapter = new ArrayAdapter<>(this, R.layout.detail_row, pokemon.getStatsValues());
             listView = findViewById(R.id.statsValuesListView);
             listView.setAdapter(adapter);
+
+            caughtSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    String msg = isChecked ? getString(R.string.caught_set) : getString(R.string.caught_unset);
+                    Toast.makeText(getApplicationContext(), pokemon.getName() + " " + msg, Toast.LENGTH_SHORT).show();
+                    pokemon.setIsCaught(isChecked);
+                    pokemonDAO.setPokemonIsCaughtById(pokemonId, isChecked);
+                }
+            });
         }
     }
 }

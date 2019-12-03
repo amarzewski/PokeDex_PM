@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="@string/search"
         tools:layout_editor_absoluteX="90dp"
         tools:layout_editor_absoluteY="9dp" />
 

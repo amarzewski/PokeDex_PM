@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PokeDex</string>
+    <string name="abilities_title">umiejętności</string>
+    <string name="caught">złapany</string>
+    <string name="caught_set">jest złapany</string>
+    <string name="caught_unset">nie jest złapany</string>
+    <string name="dark_mode_title">Tryb ciemny</string>
+    <string name="default_error">Wystąpił błąd</string>
+    <string name="general_header">Ogólne</string>
+    <string name="language_title">Język</string>
+    <string name="moves_title">ruchy</string>
+    <string name="other_header">Inne</string>
+    <string name="reset_caught_title">Resetuj wszystkie złapane pokemony</string>
+    <string name="search">szukaj</string>
+    <string name="stats_title">statystyki</string>
+    <string name="title_activity_settings">Ustawienia</string>
+</resources>
