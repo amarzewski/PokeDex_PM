@@ -8,6 +8,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.pokedex.database.PokemonDAO;
 import com.example.pokedex.other.Pokemon;
 import com.example.pokedex.R;
